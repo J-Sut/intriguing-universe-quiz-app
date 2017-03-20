@@ -29,12 +29,13 @@ li {
 	width: 15em;
     margin:0 auto;
     text-align:left;
+   	list-style-type: none;
 }
 
 ul {
 	font-size: 1.2em;
 }
-.quizApp {
+#quizApp {
 	background-color: white;
 	color: black;
 	margin: .4em 8em 1em 8em;
@@ -54,7 +55,7 @@ ul {
 	list-style-type: none;	
 }
 
-.submit-button {
+#submit-button {
 	padding: .2em;
 	margin: 0;
 	font-size: 1.5em;
@@ -62,6 +63,17 @@ ul {
 	border-radius: 8px;
 }
 
+.active .quiz {
+	display: block;
+}
+
+.quiz, .active #start-button {
+	display: none;
+}
+
+.hide {
+	display: none;
+}
 
 
 
