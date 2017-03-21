@@ -91,8 +91,21 @@ ul {
 	padding: 10px;
 	border-radius: 8px;
 	text-align: right;
-
 }
+
+#play-again {
+	background-color: gold;
+	padding: 10px;
+	font-size: 1.7em;
+	margin: 2em;
+	border-radius: 8px;
+}
+
+.finalScore {
+	font-size: 2em;
+	
+}
+
 
 
 

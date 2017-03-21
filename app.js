@@ -25,7 +25,7 @@ var state = {
 		},
 		{ 
 			question: "Which is the largest number?",
-			choices: ["# of cells in your body", "# of grains of sand on Earth",  "# base pairs in a strand of human DNA",  "# of stars in the universe"],
+			choices: ["# of cells in your body", "# of grains of sand on Earth",  "# of base pairs in a strand of human DNA",  "# of stars in the universe"],
 			ans: "# of stars in the universe"
 		},
 	]
@@ -87,7 +87,7 @@ function renderScore() {
 };
 
 function renderFinalScore() {
-	$('#quizApp').empty();
+	$('#quizApp').empty().addClass("finalScore");
 	$('#quizApp').text('Your Final Score is ' + state.currentScore + '/' + (state.currentQ));
 	$('#play-again').removeClass('hide');
 
