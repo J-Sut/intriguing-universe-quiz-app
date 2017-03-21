@@ -34,14 +34,16 @@ var state = {
 //	2) functions that modify state: 
 
 function checkAnswer() {
+	$('#scoreboard').removeClass('hide');
 	if ($('input[name=opts]:checked', '.quiz').val() === state.questions[state.currentQ].ans) {
 		console.log("Correct");
 		state.currentScore++;
 		state.currentQ++;
 		//console.log(state.currentScore);
 		renderCorrect();
-	} else {
-		console.log("Not Yet")
+	} else if ($('input[name=opts]:checked', '.quiz').val() !== state.questions[state.currentQ].ans) {
+		console.log("Not quite")
+		state.currentQ++;
 		renderNotCorrect();
 	};
 };	
@@ -53,24 +55,41 @@ function checkAnswer() {
 function renderQuestion() {
 	$('.choices').empty();
 	var q = state.questions[state.currentQ];
-	$('.currentQuestion').text(q.question);
-	for (var i=0; i< q.choices.length; i++) {
-		$('.choices').append('<li>' +
-			'<input type="radio" name="opts" id="ans-great-1" value="'+ q.choices[i] +'" >' +
-			'<label>'+ q.choices[i] +'</label></li>'); 
-	}
+	if (q === undefined) {
+		renderFinalScore();
+	} else {
+		$('.currentQuestion').text(q.question);
+		for (var i=0; i< q.choices.length; i++) {
+			$('.choices').append('<li>' +
+				'<input type="radio" name="opts" id="ans-great-1" value="'+ q.choices[i] +'" >' +
+				'<label>'+ q.choices[i] +'</label></li>'); 
+		}
+	};	
 	$('#submit-button').removeClass("hide");
 };
 
-function renderCorrect(){
+function renderCorrect() {
 	$('.choices', '.quiz').empty();
 	$('.currentQuestion').text("You got it right!");
 	$('#submit-button').addClass("hide")
-	setTimeout(renderQuestion, 1500);
-	//$('#submit-button').toggleClass(.hidden)
+	setTimeout(renderQuestion, 500);
 };
 
-function renderNotCorrect(){
+function renderNotCorrect() {
+	$('.choices', '.quiz').empty();
+	$('.currentQuestion').text("Sorry, that's incorrect...");
+	$('#submit-button').addClass("hide");
+	setTimeout(renderQuestion, 500);
+};
+
+function renderScore() {
+	$('#scoreboard').text('Score: ' + state.currentScore + '/' + (state.currentQ));
+};
+
+function renderFinalScore() {
+	$('#quizApp').empty();
+	$('#quizApp').text('Your Final Score is ' + state.currentScore + '/' + (state.currentQ));
+	$('#play-again').removeClass('hide');
 
 };
 
@@ -78,9 +97,14 @@ function renderNotCorrect(){
 $('#start-button').click(function(){
 	$('#quizApp').addClass('active');
 	renderQuestion();
+	renderScore();
 });
 
 $('#submit-button').click(function() {
 	checkAnswer();
-	//console.log("fired from submit-button");
+	renderScore();
+});
+
+$('#play-again').click(function() {
+	location.reload();
 });
