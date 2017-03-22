@@ -14,13 +14,6 @@ header {
 	height: 4em;
 }
 
-.quizTitle {
-	line-height: 60px;
-	width: 20em;
-	background-color: gold;
-	border-radius: 20px;
-}
-
 body {
 	background-color: black;
 }
@@ -35,13 +28,20 @@ li {
 ul {
 	font-size: 1.2em;
 }
+
+.quizTitle {
+	line-height: 60px;
+	width: 20em;
+	background-color: gold;
+	border-radius: 20px;
+}
+
 #quizApp {
 	background-color: white;
 	color: black;
 	margin: .4em 8em 1em 8em;
 	border-radius: 8px;
 	padding: 15px;
-
 }
 
 .quizProgress {
@@ -103,8 +103,16 @@ ul {
 
 .finalScore {
 	font-size: 2em;
-	
 }
+
+#finalScore {
+	background-color: white;
+	color: black;
+	margin: .4em 8em 1em 8em;
+	border-radius: 8px;
+	padding: 15px;
+}
+
 
 
 

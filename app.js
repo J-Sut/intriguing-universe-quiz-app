@@ -72,25 +72,33 @@ function renderCorrect() {
 	$('.choices', '.quiz').empty();
 	$('.currentQuestion').text("You got it right!");
 	$('#submit-button').addClass("hide")
-	setTimeout(renderQuestion, 1500);
+	setTimeout(renderQuestion, 100);
 };
 
 function renderNotCorrect() {
 	$('.choices', '.quiz').empty();
 	$('.currentQuestion').text("Sorry, that's incorrect...");
 	$('#submit-button').addClass("hide");
-	setTimeout(renderQuestion, 1500);
+	setTimeout(renderQuestion, 100);
 };
 
 function renderScore() {
-	$('#scoreboard').text('Score: ' + state.currentScore + '/' + (state.currentQ));
+	$('#scoreboard').text('Score: ' + state.currentScore + '/' + state.currentQ);
 };
 
 function renderFinalScore() {
-	$('#quizApp').empty().addClass("finalScore");
-	$('#quizApp').text('Your final score is ' + state.currentScore + '/' + (state.currentQ));
-	$('#play-again').removeClass('hide');
+	$('#quizApp').addClass("hide");
+	$('#finalScore').removeClass('hide');
+	$('.finalScore').text('Your final score is ' + state.currentScore + '/' + state.currentQ);
+};
 
+function resetQuiz () {
+	state.currentQ = 0;
+	state.currentScore = 0;	
+	$('#quizApp').removeClass("hide");
+	$('#finalScore').addClass('hide');
+	$('#scoreboard').text('');
+	renderQuestion();
 };
 
 // 4) Event listeners
@@ -106,5 +114,5 @@ $('#submit-button').click(function() {
 });
 
 $('#play-again').click(function() {
-	location.reload();
+	resetQuiz();
 });
